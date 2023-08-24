@@ -2,16 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import logoitec from './images/image.png'; 
 import Boton from './components/boton';
+import Contador from './components/contador';
+import { useState } from 'react';
+
 
 function App() {
 
+  const [numClics, SetNumClics] = useState(1);
+
   const manejarClic = () => {
-    console.log('Clic');
-  }
+    SetNumClics(numClics * 2);
+  };
 
   const reiniciarContador = () => {
-    console.log('Reiniciar');
-  }
+    SetNumClics(1);
+  };
 
   return (
     <div className='App'>
@@ -23,15 +28,19 @@ function App() {
         />
       </div>
       <div className='contenedor-contador'>
+
+        <Contador numClics={numClics} />
+
         <Boton 
         texto = "Clic"
         esBotonDeClic={true}
-        manejarClic={manejarClic}/>
+        manejarClic={manejarClic} />
         
         <Boton
         texto = "Reiniciar"
         esBotonDeClic={false}
-        manejarClic={reiniciarContador}/>
+        manejarClic={reiniciarContador} />
+      
       </div>
     </div>
   );
